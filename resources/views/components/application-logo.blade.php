@@ -1,0 +1,1 @@
+<img src="{{ asset('assets/IF-classic.png') }}" alt="" {{ $attributes }}>
