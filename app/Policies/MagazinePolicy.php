@@ -41,7 +41,7 @@ class MagazinePolicy
      */
     public function create(User $user)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class MagazinePolicy
      */
     public function update(User $user, Magazine $magazine)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -65,7 +65,7 @@ class MagazinePolicy
      */
     public function delete(User $user, Magazine $magazine)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -77,7 +77,7 @@ class MagazinePolicy
      */
     public function restore(User $user, Magazine $magazine)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -89,6 +89,6 @@ class MagazinePolicy
      */
     public function forceDelete(User $user, Magazine $magazine)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 }

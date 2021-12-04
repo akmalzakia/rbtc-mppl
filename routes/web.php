@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\Dashboard\DashboardBookController;
+use App\Http\Controllers\Dashboard\DashboardController;
+use App\Http\Controllers\Dashboard\DashboardInquiryController;
 use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\MagazineController;
 use App\Http\Controllers\UserController;
@@ -21,11 +24,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])->can('admin')->name('dashboard');
+Route::get('/dashboard/books', [DashboardBookController::class, 'index'])->can('admin')->name('dashboard.books');
+Route::get('/dashboard/inquiries', [DashboardInquiryController::class, 'index'])->can('admin')->name('dashboard.inquiries');
 
-Route::get('/profile', [UserController::class ,'showProfile']);
+Route::get('/profile/{user}', [UserController::class ,'show']);
 
 require __DIR__.'/auth.php';
 

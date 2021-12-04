@@ -41,7 +41,7 @@ class BookPolicy
      */
     public function create(User $user)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class BookPolicy
      */
     public function update(User $user, Book $book)
     {
-        return $user->roles === 'Admin'; 
+        return $user->roles === 'admin'; 
     }
 
     /**
@@ -65,7 +65,7 @@ class BookPolicy
      */
     public function delete(User $user, Book $book)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -77,7 +77,7 @@ class BookPolicy
      */
     public function restore(User $user, Book $book)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -89,6 +89,6 @@ class BookPolicy
      */
     public function forceDelete(User $user, Book $book)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 }

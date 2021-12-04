@@ -41,7 +41,7 @@ class PaperPolicy
      */
     public function create(User $user)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class PaperPolicy
      */
     public function update(User $user, Paper $paper)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -65,7 +65,7 @@ class PaperPolicy
      */
     public function delete(User $user, Paper $paper)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -77,7 +77,7 @@ class PaperPolicy
      */
     public function restore(User $user, Paper $paper)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -89,6 +89,6 @@ class PaperPolicy
      */
     public function forceDelete(User $user, Paper $paper)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 }

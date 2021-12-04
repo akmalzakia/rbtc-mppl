@@ -7,12 +7,13 @@
       </div>
       <x-partial.cards.card class="rounded-md flex-1 flex-col px-4 pt-4 justify-between">
         <div class="flex flex-col items-center space-y-2 mt-4">
-          <img src="{{ auth()->user()->image ?? 'https://source.unsplash.com/500x400?people' }}" alt=""
+          <img src="{{ $user->image ?? 'https://source.unsplash.com/500x400?people' }}" alt=""
             class="rounded-full object-cover h-44 w-44">
-          <p class="text-3xl text-blue-600 m-2">{{ auth()->user()->name }}</p>
-          <p class="text-xl m-1">{{ ucfirst(auth()->user()->roles) }}</p>
+          <p class="text-3xl text-blue-600 m-2">{{ $user->name }}</p>
+          <p class="text-xl m-1">{{ ucfirst($user->roles) }}</p>
         </div>
         <div class="block mt-5">
+          @if (Auth::user() === $user) 
           <div class="border-b-2 border-gray-200 rounded-md p-3 text-center">
             <a href="" class="text-gray-600 hover:text-blue-600 transition">Settings</a>
           </div>
@@ -22,6 +23,7 @@
               <button type="submit" class="text-red-500 hover:text-red-600 transition">Logout</button>
             </form>
           </div>
+          @endif
         </div>
       </x-partial.cards.card>
     </div>

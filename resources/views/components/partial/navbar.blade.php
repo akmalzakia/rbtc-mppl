@@ -13,49 +13,49 @@
             </nav>
 
             @auth
-            <div class="inline-flex p-2 border-l-2">
-                <button type="button" onclick="showDropdown()"
-                        class="dropdownButton inline-flex items-center rounded-xl w-full"
-                        id='menu-button' aria-expanded="true" aria-haspopup="true">
-                        <img src="{{ auth()->user()->image ?? 'https://source.unsplash.com/500x400?people' }}" alt=""
-                            class="rounded-full max-h-6">
-
-                        <span class="ml-2 mr-1 text-xs font-medium text-gray-700">
-                            {{ auth()->user()->name }}
-                        </span>
-
-                        <span></span>
-
-                </button>
-
-                <!--
-                Dropdown menu, show/hide based on menu state.
-
-                Entering: "transition ease-out duration-100"
-                From: "transform opacity-0 scale-95"
-                To: "transform opacity-100 scale-100"
-                Leaving: "transition ease-in duration-75"
-                From: "transform opacity-100 scale-100"
-                To: "transform opacity-0 scale-95"
-            -->
-                <div class="hidden z-30 origin-top-right absolute right-0 mt-8 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
-                    role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1"
-                    id="dropdownMenu">
-                    <div class="" role="none">
-                        <!-- Active: "bg-gray-100 text-gray-900", Not Active: "text-gray-700" -->
-                        <a href="/profile" class="text-gray-700 block px-4 py-2 text-sm hover:bg-blue-600 hover:text-white rounded-t-md" role="menuitem" tabindex="-1"
-                            id="menu-item-0">Account</a>
-                        <form method="POST" action="{{ route('logout') }}" role="none">
-                            @csrf
-                            <button type="submit" class="text-gray-700 block w-full text-left px-4 py-2 text-sm hover:bg-blue-600 hover:text-white rounded-b-md"
-                                role="menuitem" tabindex="-1" id="menu-item-3">
-                                Sign out
+            <div class="inline-block py-2 border-l border-gray-200">
+                <div class="hidden sm:flex sm:items-center sm:ml-6">
+                    <x-dropdown align="right" width="48">
+                        <x-slot name="trigger">
+                            <button class="flex items-center text-sm space-x-2 font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                <img src="{{ Auth::user()->image ? asset(Auth::user()->image) : 'https://source.unsplash.com/500x400?people' }}" alt="" class="rounded-full h-6 w-6">
+                                <div>{{ Auth::user()->name }}</div>
+    
+                                <div class="ml-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                                    </svg>
+                                </div>
                             </button>
-                        </form>
-                    </div>
+                        </x-slot>
+    
+                        <x-slot name="content">
+                            @can('admin')
+                            <x-dropdown-link href="/dashboard">
+                                {{ __('Dashboard') }}
+                            </x-dropdown-link>
+                            @endcan
+                            <x-dropdown-link href="/profile/{{ auth()->user()->username }}">
+                                {{ __('Profile') }}
+                            </x-dropdown-link>
+                            <x-dropdown-link href="">
+                                {{ __('Settings') }}
+                            </x-dropdown-link>
+                            <!-- Authentication -->
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+    
+                                <x-dropdown-link :href="route('logout')"
+                                        class="text-red-600"
+                                        onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
+                        </x-slot>
+                    </x-dropdown>
                 </div>
             </div>
-
 
 
             @else
@@ -82,8 +82,6 @@
         </div>
     </div>
     <script>
-        function showDropdown() {
-            document.getElementById("dropdownMenu").classList.toggle("hidden");
-        }
+
     </script>
 </header>

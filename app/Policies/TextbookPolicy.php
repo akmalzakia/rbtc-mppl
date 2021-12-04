@@ -41,7 +41,7 @@ class TextbookPolicy
      */
     public function create(User $user)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class TextbookPolicy
      */
     public function update(User $user, Textbook $textbook)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -65,7 +65,7 @@ class TextbookPolicy
      */
     public function delete(User $user, Textbook $textbook)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -77,7 +77,7 @@ class TextbookPolicy
      */
     public function restore(User $user, Textbook $textbook)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 
     /**
@@ -89,6 +89,6 @@ class TextbookPolicy
      */
     public function forceDelete(User $user, Textbook $textbook)
     {
-        return $user->roles === 'Admin';
+        return $user->roles === 'admin';
     }
 }
