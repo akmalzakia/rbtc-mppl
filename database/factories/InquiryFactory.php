@@ -13,8 +13,12 @@ class InquiryFactory extends Factory
      */
     public function definition()
     {
+        $inq_type = ['complaint', 'request'];
+        $type = $inq_type[$this->faker->numberBetween(0, 1)];
         return [
-            //
+            'user_id' => $this->faker->numberBetween(1, 3),
+            'type' => $type,
+            'text' => $this->faker->text(),
         ];
     }
 }

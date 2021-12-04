@@ -9,10 +9,10 @@ use App\Http\Requests\UpdateInquiryRequest;
 class InquiryController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->authorizeResource(Inquiry::class, 'inquiry');
-    }
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(Inquiry::class, 'inquiry');
+    // }
 
     /**
      * Display a listing of the resource.
@@ -21,7 +21,7 @@ class InquiryController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -31,7 +31,7 @@ class InquiryController extends Controller
      */
     public function create()
     {
-        //
+        return view('inquiry.create');
     }
 
     /**
@@ -42,7 +42,16 @@ class InquiryController extends Controller
      */
     public function store(StoreInquiryRequest $request)
     {
-        //
+        $validated = $request->validated();
+        
+        $inquiry = Inquiry::create([
+            'user_id' => auth()->user()->id,
+            'type' => $validated['type'],
+            'text' => $validated['text'],
+        ]);
+        // dd($inquiry);
+
+        return redirect('/contact')->with('success', 'Pesan anda berhasil dikirim');
     }
 
     /**

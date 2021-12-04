@@ -16,8 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             MagazineSeeder::class,
             PaperSeeder::class,
-            TextbookSeeder::class,
-            ThesisSeeder::class
+            TextbookSeeder::class
         ]);
     }
 }

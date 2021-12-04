@@ -17,10 +17,7 @@ class CreateTextbooksTable extends Migration
             $table->id();
             $table->foreignId('book_id');
             $table->string('isbn', 20)->unique();
-            $table->string('author', 40);
             $table->integer('edition');
-            $table->string('category', 30);
-            $table->string('link', 100)->unique()->nullable();
             $table->timestamps();
         });
     }

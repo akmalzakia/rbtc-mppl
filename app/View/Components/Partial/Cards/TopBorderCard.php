@@ -1,10 +1,10 @@
 <?php
 
-namespace App\View\Components\Partial;
+namespace App\View\Components\Partial\Cards;
 
 use Illuminate\View\Component;
 
-class Card extends Component
+class TopBorderCard extends Component
 {
     public $logo;
     /**
@@ -24,6 +24,6 @@ class Card extends Component
      */
     public function render()
     {
-        return view('components.partial.card');
+        return view('components.partial.cards.top-border-card');
     }
 }

@@ -11,7 +11,7 @@ class Book extends Model
 
     protected $guarded = ['id'];
 
-    // protected $without = ['bookmark'];
+    protected $without = ['bookmark'];
 
     public function bookmark()
     {
@@ -33,13 +33,29 @@ class Book extends Model
         return $this->hasOne(Paper::class);
     }
 
-    public function thesis()
-    {
-        return $this->hasOne(Thesis::class);
-    }
-
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['sort'] ?? false, function($query, $sort) {
+            return $query->orderBy('created_at', $sort);
+        });
+
+        $query->when($filters['book_type'] ?? false, function($query, $type) {
+            $query->when($type[0] ?? false, function($query) {
+                return $query->where('book_type', 'textbook');
+            });
+
+            $query->when($type[1] ?? false, function($query) {
+                return $query->where('book_type', 'magazine');
+            });
+
+            $query->when($type[2] ?? false, function($query) {
+                return $query->where('book_type', 'paper');
+            });
+        });
     }
 }

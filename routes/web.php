@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\InquiryController;
 use App\Http\Controllers\MagazineController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,8 +25,11 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/profile', [UserController::class ,'showProfile']);
+
 require __DIR__.'/auth.php';
 
 Route::resource('/books', BookController::class);
-Route::resource('/magazines', MagazineController::class);
 Route::get('/csrf', [MagazineController::class,'showToken']);
+Route::get('/contact',[InquiryController::class, 'create']);
+Route::resource('/inquiry', InquiryController::class)->except('create');

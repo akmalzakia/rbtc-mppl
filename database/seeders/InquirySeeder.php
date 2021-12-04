@@ -13,6 +13,6 @@ class InquirySeeder extends Seeder
      */
     public function run()
     {
-        //
+    
     }
 }

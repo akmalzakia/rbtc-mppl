@@ -23,12 +23,16 @@ class UpdateBookRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required', 'max:255'],
-            'slug' => ['required', 'unique:book'],
+        $rules = [
+            'name' => 'required|max:255',
+            'slug' => 'required|unique:books',
+            'book_type' => 'required|in:magazine,textbook,paper',
+            'image' => 'image|file|max:32768',
             'publisher' => 'required|max:40',
             'year_published' => 'required|numeric|min:1900|max:2018',
             'description' => 'required'
         ];
+
+        return $rules;
     }
 }

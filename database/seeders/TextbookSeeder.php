@@ -15,7 +15,6 @@ class TextbookSeeder extends Seeder
     public function run()
     {
         Textbook::factory()
-            ->category_seq()
             ->count(20)
             ->create();
     }

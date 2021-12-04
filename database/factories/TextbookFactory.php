@@ -15,21 +15,10 @@ class TextbookFactory extends Factory
     public function definition()
     {
         return [
-            'book_id' => Book::factory(),
+            'book_id' => Book::factory()->isTextbook()->category_seq(),
             'isbn' => $this->faker->unique()->numerify('###-#-##-######-#'),
-            'author' => $this->faker->name(),
             'edition' => $this->faker->randomDigit(),
-            'link' => 'src/' . $this->faker->unique()->numerify('textbook-#####') . '.pdf',
         ];
         
-    }
-
-    public function category_seq()
-    {
-        return $this->sequence(
-            ['category' => 'Machine Learning'],
-            ['category' => 'Algorithm'],
-            ['category' => 'Software Architecture'],
-        );
     }
 }

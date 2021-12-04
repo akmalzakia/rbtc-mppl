@@ -17,7 +17,6 @@ class CreateMagazinesTable extends Migration
             $table->id();
             $table->foreignId('book_id');
             $table->string('issn')->unique();
-            $table->string('link', 100)->unique()->nullable();
             $table->timestamps();
         });
     }

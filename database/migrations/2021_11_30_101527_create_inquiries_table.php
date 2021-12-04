@@ -16,7 +16,7 @@ class CreateInquiriesTable extends Migration
         Schema::create('inquiries', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('type', 20);
+            $table->enum('type', ['complaint', 'request']);
             $table->text('text');
             $table->timestamps();
         });

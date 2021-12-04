@@ -15,18 +15,8 @@ class PaperFactory extends Factory
     public function definition()
     {
         return [
-            'book_id' => Book::factory(),
-            'author' => $this->faker->name(),
-            'link' => 'src/' . $this->faker->unique()->numerify('paper-#####') . '.pdf',
+            'book_id' => Book::factory()->isPaper()->category_seq(),
+            'doi' => $this->faker->unique()->bothify('10.####/??????')
         ];
-    }
-
-    public function category_seq()
-    {
-        return $this->sequence(
-            ['category' => 'Machine Learning'],
-            ['category' => 'Algorithm'],
-            ['category' => 'Software Architecture'],
-        );
     }
 }

@@ -25,7 +25,7 @@ class UpdateInquiryRequest extends FormRequest
     {
         return [
             'user_id' => 'required',
-            'type' => 'required|max:20',
+            'type' => 'required|in:complaint,request',
             'text' => 'required'
         ];
     }

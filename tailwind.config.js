@@ -36,6 +36,7 @@ module.exports = {
             textColor: ['active'],
             translate: ['group-hover'],
             position: ['group-hover'],
+            borderWidth: ['group-hover', 'hover'],
         },
     },
 

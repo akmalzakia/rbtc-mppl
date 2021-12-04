@@ -15,7 +15,6 @@ class PaperSeeder extends Seeder
     public function run()
     {
         Paper::factory()
-            ->category_seq()
             ->count(20)
             ->create();
     }

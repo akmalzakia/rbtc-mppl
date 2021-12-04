@@ -15,9 +15,10 @@ class MagazineFactory extends Factory
     public function definition()
     {
         return [
-            'book_id' => Book::factory(),
-            'issn' => $this->faker->unique(true)->numerify('####-####'),
-            'link' => 'src/' . $this->faker->unique()->numerify('magazine-#####') . '.pdf',
+            'book_id' => Book::factory()->isMagazine(),
+            'issn' => $this->faker->unique(true)->numerify('####-####')
         ];
     }
+
+    
 }
