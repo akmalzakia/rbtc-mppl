@@ -25,13 +25,21 @@ class UpdateBookRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|max:255',
-            'slug' => 'required|unique:books',
             'book_type' => 'required|in:magazine,textbook,paper',
             'image' => 'image|file|max:32768',
             'publisher' => 'required|max:40',
             'year_published' => 'required|numeric|min:1900|max:2018',
-            'description' => 'required'
+            'description' => 'required',
+            'oldFile' => 'required',
+            'oldImage' => 'required',
         ];
+        
+        if($this->oldSlug !== $this->slug) {
+            $rules += ['slug' => 'required|unique:books'];
+        }
+        else {
+            $rules += ['slug' => 'required'];
+        }
 
         return $rules;
     }

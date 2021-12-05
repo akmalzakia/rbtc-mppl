@@ -23,7 +23,6 @@ class UpdatePaperRequest extends UpdateBookRequest
     {
         $rules = parent::rules();
         $rules += [
-            'book_id' => 'required',
             'author' => 'required|max:40',
             'category' => 'required|max:30',
         ];

@@ -49,20 +49,24 @@ class MagazineController extends Controller
      */
     public function store(StoreMagazineRequest $request)
     {
-        // dd($request);
         $validated = $request->validated();
+        $filePath = BookTrait::storeFile($request, class_basename(Magazine::class));
+        $imagePath = BookTrait::storeImage($request, class_basename(Magazine::class));
 
-        $book = BookTrait::createBook($validated);
+        $validated += [
+            'author' => null,
+            'category' => null,
+        ];
 
-        $path = BookTrait::storeFile($request, class_basename(Magazine::class));
+        $book = BookTrait::createBook($validated, $imagePath, $filePath);
+
 
         $magazine = Magazine::create([
             'book_id' => $book->id,
             'issn' => $validated['issn'],
-            'link' => $path,
         ]);
 
-        return new BookResource($book);
+        return redirect('/dashboard/books')->with('success', 'Magazine has been added');
     }
 
     /**
@@ -76,16 +80,6 @@ class MagazineController extends Controller
         
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Magazine  $magazine
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Magazine $magazine)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -94,9 +88,20 @@ class MagazineController extends Controller
      * @param  \App\Models\Magazine  $magazine
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMagazineRequest $request, Magazine $magazine)
+    public function update(UpdateMagazineRequest $request, Book $book)
     {
-        //
+        $validated = $request->validated();
+        $filePath = BookTrait::updateFile($request, $book, class_basename(Magazine::class));
+        $imagePath = BookTrait::updateImage($request, $book, class_basename(Magazine::class));
+
+        $attrib = [
+            'issn' => $validated['issn'],
+        ];
+
+        BookTrait::updateBook($book->id, $validated, $imagePath ?? $request->oldImage, $filePath ?? $request->oldFile);
+        Magazine::where('book_id', $book->id)->update($attrib);
+
+        return redirect('/dashboard/books')->with('success', 'Magazine has been updated');
     }
 
     /**

@@ -61,7 +61,8 @@
                                                     </a>
                                                 </td>
                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                                    <a href="#" class="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                                    <a href="/dashboard/inquiries/{{ $inquiry->id }}"
+                                                        class="px-2 text-blue-700"><i data-feather="eye"></i></a>
                                                 </td>
                                             </tr>
                                             @endforeach

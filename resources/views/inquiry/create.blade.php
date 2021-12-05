@@ -19,32 +19,13 @@
         <div class="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3">
           <form action="/inquiry" method="POST" class="space-y-4">
             @csrf
-            <div>
-              <label class="sr-only" for="name">Nama</label>
-              <input class="transition duration-300 ease-in-out w-full p-3 text-sm border-gray-200 rounded-lg  "
-                placeholder="Nama" type="text" id="name" value="{{ old('name') }}" />
-            </div>
-
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <div>
-                <label class="sr-only" for="email">Email</label>
-                <input class="w-full p-3 text-sm border-gray-200 rounded-lg transition duration-300 ease-in-out"
-                  placeholder="Email" type="email" id="email" value="{{ old('email') }}" />
-              </div>
-
-              <div>
-                <label class="sr-only" for="phone">Nomor Telepon</label>
-                <input class="w-full p-3 text-sm border-gray-200 rounded-lg transition duration-300 ease-in-out"
-                  placeholder="Nomor Telepon" type="tel" id="phone" value="{{ old('phone') }}" />
-              </div>
-            </div>
 
             <div class="block">
               <select name="type" id="inquiry_type"
                 class="text-sm text-gray-500 border-gray-200 rounded-lg w-full transition duration-300 ease-in-out">
                 <option value="" disabled hidden {{ old('inquiry_type')=='' ? 'selected' : '' }}>Jenis Keluhan</option>
-                <option value="complaint" {{ old('inquiry_type')=='desc' ? 'selected' : '' }}>Ajuan</option>
-                <option value="request" {{ old('inquiry_type')=='asc' ? 'selected' : '' }}>Permintaan</option>
+                <option value="complaint" {{ old('inquiry_type')=='complaint' ? 'selected' : '' }}>Ajuan</option>
+                <option value="request" {{ old('inquiry_type')=='request' ? 'selected' : '' }}>Permintaan</option>
               </select>
             </div>
 

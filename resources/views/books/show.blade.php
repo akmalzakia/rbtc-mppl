@@ -1,14 +1,14 @@
 <x-main-layout>
     <section class="p-2">
         <div class="flex p-2">
-            <x-partial.buttons.back-button href='/books' class="mx-3 my-2"/>
+            <x-partial.buttons.back-button :href="url()->previous()" class="mx-3 my-2"/>
         </div>
         <x-partial.cards.card class="w-full p-4">
             <div class="flex space-x-5">
                 <div>
-                    <img src="{{ $book->image ? asset($book->image) : 'https://source.unsplash.com/500x400' }}" class="max-w-md">
+                    <img src="{{ $book->image ? asset('storage/' . $book->image) : 'https://source.unsplash.com/500x400' }}" class="max-w-md">
                 </div>
-                <div class="flex flex-col justify-between">
+                <div class="flex-1 flex-col justify-between">
                     <div class="flex flex-col justify-between h-3/4">
                         <div>
                             <p class="text-3xl font-bold text-blue-600">{{ $book->name }}</p>
@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col justify-end h-1/4 ">
-                        <a href="" class="block bg-blue-600 p-2 rounded-md text-white text-center drop-shadow-md">Read</a>
+                        <a href="#" class="block bg-blue-600 p-2 rounded-md text-white text-center drop-shadow-md">Read</a>
                     </div>
                 </div>
             </div>

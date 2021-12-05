@@ -23,7 +23,6 @@ class StoreTextbookRequest extends StoreBookRequest
     {
         $rules = parent::rules();
         $rules += [
-            'book_id' => 'required',
             'isbn' => 'required|unique:textbooks|max:13',
             'author' => 'required|max:40',
             'edition' => 'required|numeric',

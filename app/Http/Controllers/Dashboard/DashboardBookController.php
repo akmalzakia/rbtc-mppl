@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Book;
 use Illuminate\Http\Request;
+use \Cviebrock\EloquentSluggable\Services\SlugService;
 
 class DashboardBookController extends Controller
 {
@@ -25,9 +26,11 @@ class DashboardBookController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        return view('dashboard.books.create', [
+            'type' => $request->type,
+        ]);
     }
 
     /**
@@ -38,7 +41,7 @@ class DashboardBookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
@@ -60,7 +63,10 @@ class DashboardBookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        return view('dashboard.books.edit', [
+            'type' => $book->book_type,
+            'book' => $book
+        ]);
     }
 
     /**
@@ -72,7 +78,7 @@ class DashboardBookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        
     }
 
     /**
@@ -83,6 +89,14 @@ class DashboardBookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        Book::destroy($book->id);
+
+        return redirect('/dashboard/books')->with('success', 'Book has been deleted');
+    }
+
+    public function checkSlug(Request $request)
+    {
+        $slug = SlugService::createSlug(Book::class, 'slug', $request->title);
+        return response()->json(['slug' => $slug]);
     }
 }

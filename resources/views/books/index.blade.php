@@ -42,7 +42,7 @@
                 </div>
                 <div class="grid grid-cols-3 grid-rows-3 gap-2 py-1">
                     @foreach ($books as $book)
-                    <x-partial.cards.book-card :bookType="$book->book_type" :link='$book->slug'>
+                    <x-partial.cards.book-card :bookType="$book->book_type" :link='$book->slug' :image='$book->image'>
                         <x-slot name='title'>
                             {{ $book->name }}
                         </x-slot>

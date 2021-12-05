@@ -8,13 +8,15 @@
     @endif
   </div>
   
-  <img
-    src="{{ $image ? $image : 'https://images.unsplash.com/photo-1545289414-1c3cb1c06238?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80' }}"
+  <div class="px-1">
+    <img
+    src="{{ $image ? asset('storage/' . $image ): 'https://images.unsplash.com/photo-1545289414-1c3cb1c06238?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80' }}"
     alt="" class="object-cover w-full h-18" />
+  </div>
 
   <div class="flex flex-col justify-between px-8 pb-8">
     <div class="flex justify-between space-x-2">
-      <p class="text-lg font-bold break-all">{{ $title }} s</p>
+      <p class="text-lg font-bold break-all">{{ $title }}</p>
     </div>
     <p class="text-sm text-gray-600">{{ $author }}</p>
 

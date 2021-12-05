@@ -22,9 +22,16 @@ class UpdateMagazineRequest extends UpdateBookRequest
     public function rules()
     {
         $rules = parent::rules();
-        $rules += [
-            'issn' => 'required|unique:magazines',
-        ];
+        if($this->oldIssn !== $this->issn) {
+            $rules += [
+                'issn' => 'required|unique:magazines',
+            ];
+        }
+        else {
+            $rules += [
+                'issn' => 'required',
+            ];
+        }
 
         return $rules;
     }
