@@ -10,7 +10,7 @@
   
   <div class="px-1">
     <img
-    src="{{ $image ? asset('storage/' . $image ): 'https://images.unsplash.com/photo-1545289414-1c3cb1c06238?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80' }}"
+    src="{{ $image ? asset('uploads/' . $image ): 'https://images.unsplash.com/photo-1545289414-1c3cb1c06238?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80' }}"
     alt="" class="object-cover w-full h-18" />
   </div>
 

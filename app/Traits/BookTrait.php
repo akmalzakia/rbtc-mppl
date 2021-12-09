@@ -44,7 +44,7 @@ trait BookTrait {
         $file = $request->file('file');
         if($file) {
             // $path = $file->storeAs(Str::lower($type) . '/' . $request->slug, $request->slug . '.' . $file->extension());
-            $path = $file->store($type);
+            $path = $file->store($type, 'public_uploads');
             return $path;
         }
 
@@ -61,7 +61,7 @@ trait BookTrait {
                 Storage::delete($request->oldFile);
             }
 
-            $path = $file->store($type);
+            $path = $file->store($type, 'public_uploads');
             return $path;
         }
 
@@ -77,7 +77,7 @@ trait BookTrait {
 
         if($image) {
             // $path = $image->storeAs(Str::lower($type) . '/' . $request->slug, $request->slug . '.' . $image->extension());
-            $path = $image->store($type);
+            $path = $image->store($type, 'public_uploads');
             return $path;
         }
 

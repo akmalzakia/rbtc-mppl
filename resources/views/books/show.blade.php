@@ -6,7 +6,7 @@
         <x-partial.cards.card class="w-full p-4">
             <div class="flex space-x-5">
                 <div>
-                    <img src="{{ $book->image ? asset('storage/' . $book->image) : 'https://source.unsplash.com/500x400' }}" class="max-w-md">
+                    <img src="{{ $book->image ? asset('uploads/' . $book->image) : 'https://source.unsplash.com/500x400' }}" class="max-w-md">
                 </div>
                 <div class="flex-1 flex-col justify-between">
                     <div class="flex flex-col justify-between h-3/4">

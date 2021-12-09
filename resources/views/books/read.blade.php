@@ -25,7 +25,7 @@
     </div>
     <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
     <script>
-        const url = "{{asset('storage/' . $book->link) }}";
+        const url = "{{asset('uploads/' . $book->link) }}";
         console.log(url);
         let pdfDoc = null, pageNum = {{ session('bookmark') ?? 1 }}, pageIsRendering = false, pageNumIsPending = null;
         const prev = document.querySelector('#prev-page');

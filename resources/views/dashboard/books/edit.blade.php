@@ -202,7 +202,7 @@
                             <input type="hidden" name="oldImage" value="{{ $book->image }}">
                             <div class="p-1 max-w-sm">
                                 @if ($book->image)
-                                <img class="img-preview" class="" src="{{ asset('storage/' . $book->image) }}">
+                                <img class="img-preview" class="" src="{{ asset('uploads/' . $book->image) }}">
                                 @else
                                 <img class="img-preview" class="">
                                 @endif

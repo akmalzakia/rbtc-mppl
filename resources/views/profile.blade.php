@@ -73,7 +73,7 @@
           <div class="flex w-full p-2 border-b shadow-sm">
             <div class="w-1/4">
               <img
-                src="{{ $bookmark->book->image ? asset('storage/' . $bookmark->book->image) : 'https://source.unsplash.com/500x400' }}"
+                src="{{ $bookmark->book->image ? asset('uploads/' . $bookmark->book->image) : 'https://source.unsplash.com/500x400' }}"
                 alt="" class="w-52 h-52 bg-cover">
             </div>
             <div class="flex flex-col justify-between px-2 pt-2 w-3/4">
