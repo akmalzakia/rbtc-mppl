@@ -17,9 +17,8 @@
         </div>
 
         <div class="p-8 bg-white rounded-lg shadow-lg lg:p-12 lg:col-span-3">
-          <form action="/inquiry" method="POST" class="space-y-4">
+          <form action="/contact" method="POST" class="space-y-4">
             @csrf
-
             <div class="block">
               <select name="type" id="inquiry_type"
                 class="text-sm text-gray-500 border-gray-200 rounded-lg w-full transition duration-300 ease-in-out">

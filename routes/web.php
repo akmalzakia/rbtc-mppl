@@ -61,6 +61,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/books', BookController::class);
     Route::resource('/bookmark', BookmarkController::class);
     Route::get('/contact',[InquiryController::class, 'create']);
+    Route::post('/contact',[InquiryController::class, 'store']);
     Route::get('/books/{book}/read', [BookController::class, 'read']);
 });
 
