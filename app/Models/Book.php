@@ -40,24 +40,30 @@ class Book extends Model
         return 'slug';
     }
 
-    public function scopeFilter($query, array $filters)
+    public function scopeSearch($query, $search)
     {
-        $query->when($filters['sort'] ?? false, function($query, $sort) {
-            return $query->orderBy('created_at', $sort);
+        $query->when($search ?? false, function($query, $search) {
+            return $query->where('name', 'like', '%' . $search . '%');
+        });
+       
+    }
+
+    public function scopeSort($query, $sort)
+    {
+        $query->when($sort ?? false, function($query, $search) {
+            return $query->orderBy('created_at', $search);
         });
 
-        $query->when($filters['book_type'] ?? false, function($query, $type) {
-            $query->when($type[0] ?? false, function($query) {
-                return $query->where('book_type', 'textbook');
-            });
+        // dd($query);
+    }
 
-            $query->when($type[1] ?? false, function($query) {
-                return $query->where('book_type', 'magazine');
-            });
-
-            $query->when($type[2] ?? false, function($query) {
-                return $query->where('book_type', 'paper');
-            });
+    public function scopeType($query, array $array)
+    {
+        return $query->where(function ($query) use ($array) {
+            $i = 1;
+            foreach($array as $items) {
+                $query->orWhere('book_type', $items);
+            }
         });
     }
 

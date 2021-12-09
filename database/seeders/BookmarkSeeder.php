@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Bookmark;
 use Illuminate\Database\Seeder;
 
 class BookmarkSeeder extends Seeder
@@ -13,6 +14,8 @@ class BookmarkSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Bookmark::factory()->
+            count(40)->
+            create();
     }
 }

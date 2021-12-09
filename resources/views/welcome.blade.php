@@ -11,7 +11,7 @@
             dan mahasiswa untuk mengakses sumber belajar digital yang disediakan oleh Teknik Informatika ITS
           </p>
 
-          <x-partial.forms.search action='' class="mt-6 w-2/3"/>
+          <x-partial.forms.search action='/books' class="mt-6 w-2/3"/>
         </div>
 
         <span class="absolute -inset-y-0 hidden w-16 bg-blue-900 lg:block -right-16"></span>
@@ -19,8 +19,7 @@
       </div>
       <div class="relative z-10 lg:py-8">
         <div class="relative h-64 lg:h-full">
-          <img class="absolute inset-0 object-cover w-full h-full"
-            src="https://www.hyperui.dev/code/photos/house-1.jpeg" alt="" />
+          <img class="absolute inset-0 object-cover w-full h-full" src="{{ asset('assets/rbtc.png') }}" alt="" />
         </div>
       </div>
     </div>
@@ -28,18 +27,26 @@
 
   <section>
     <div class="flex justify-between items-center p-2 space-x-">
-      <x-partial.cards.top-border-card logo="monta.png">
-        Tugas Akhir
-      </x-partial.cards.top-border-card>
-      <x-partial.cards.top-border-card logo="book.png">
-        Buku
-      </x-partial.cards.top-border-card>
-      <x-partial.cards.top-border-card logo="magz.png">
-        Majalah
-      </x-partial.cards.top-border-card>
-      <x-partial.cards.top-border-card logo="paper.png">
-        Research Paper
-      </x-partial.cards.top-border-card>
+      <div class="p-2 flex-1">
+        <x-partial.cards.top-border-card logo="monta.png" href='http://monta.if.its.ac.id'>
+          Tugas Akhir
+        </x-partial.cards.top-border-card>
+      </div>
+      <div class="p-2 flex-1">
+        <x-partial.cards.top-border-card logo="book.png" href='/books'>
+          Buku
+        </x-partial.cards.top-border-card>
+      </div>
+      <div class="p-2 flex-1">
+        <x-partial.cards.top-border-card logo="magz.png" href='/books'>
+          Majalah
+        </x-partial.cards.top-border-card>
+      </div>
+      <div class="p-2 flex-1">
+        <x-partial.cards.top-border-card logo="paper.png" href='/books'>
+          Research Paper
+        </x-partial.cards.top-border-card>
+      </div>
     </div>
   </section>
 </x-main-layout>

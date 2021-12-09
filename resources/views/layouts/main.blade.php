@@ -12,6 +12,7 @@
 
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <script src="{{ asset('js/app.js') }}" defer></script>
+  
 
   <style>
     body {
@@ -28,6 +29,7 @@
   <x-partial.footer />
 
   <script src="https://unpkg.com/feather-icons"></script>
+  <script src="{{ asset('js/pdf.js') }}"></script>
 
   <script>
     feather.replace();

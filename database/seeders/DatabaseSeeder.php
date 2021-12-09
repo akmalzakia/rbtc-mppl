@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             PaperSeeder::class,
             TextbookSeeder::class,
             InquirySeeder::class,
+            BookmarkSeeder::class,
         ]);
     }
 }

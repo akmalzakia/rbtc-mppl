@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\Dashboard\DashboardBookController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DashboardInquiryController;
@@ -22,7 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function () {   
     return view('welcome');
 });
 
@@ -58,5 +59,7 @@ require __DIR__.'/auth.php';
 
 Route::middleware(['auth'])->group(function () {
     Route::resource('/books', BookController::class);
+    Route::resource('/bookmark', BookmarkController::class);
     Route::get('/contact',[InquiryController::class, 'create']);
+    Route::get('/books/{book}/read', [BookController::class, 'read']);
 });

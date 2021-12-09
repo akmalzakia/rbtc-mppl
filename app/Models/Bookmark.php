@@ -22,4 +22,23 @@ class Bookmark extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function scopeType($query, $book)
+    {
+        return $query->whereHas('book', function ($query) use ($book) {
+            $query->where('book_type', $book);
+        });
+    }
+
+    public static function isExist($book_id, $user_id)
+    {
+        if(Bookmark::where([
+            ['book_id', '=', $book_id],
+            ['user_id', '=', $user_id],
+        ])) {
+            return true;
+        }
+
+        return false;
+    }
 }

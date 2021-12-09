@@ -45,7 +45,7 @@
                         </div>
                     </div>
                     <div class="flex flex-col justify-end h-1/4 ">
-                        <a href="#" class="block bg-blue-600 p-2 rounded-md text-white text-center drop-shadow-md">Read</a>
+                        <a href="/books/{{ $book->slug }}/read" class="block bg-blue-600 p-2 rounded-md text-white text-center drop-shadow-md">Read</a>
                     </div>
                 </div>
             </div>

@@ -24,7 +24,7 @@ class StoreBookmarkRequest extends FormRequest
     public function rules()
     {
         return [
-            'page' => 'required|numeric'
+            'page' => 'required'
         ];
     }
 }

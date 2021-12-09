@@ -5,14 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Bookmark;
 use App\Http\Requests\StoreBookmarkRequest;
 use App\Http\Requests\UpdateBookmarkRequest;
+use Illuminate\Http\Request;
 
 class BookmarkController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->authorizeResource(Bookmark::class, 'bookmark');
-    }
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(Bookmark::class, 'bookmark');
+    // }
 
     /**
      * Display a listing of the resource.
@@ -25,16 +26,6 @@ class BookmarkController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Requests\StoreBookmarkRequest  $request
@@ -42,7 +33,20 @@ class BookmarkController extends Controller
      */
     public function store(StoreBookmarkRequest $request)
     {
+        $validated = $request->validated();
         
+        if(Bookmark::isExist($request->book_id, auth()->user()->id)) {
+            $bookmark = Bookmark::where('book_id', '=', $request->book_id)->where('user_id', auth()->user()->id)->get();
+            Bookmark::destroy($bookmark);
+        }
+
+        Bookmark::create([
+            'user_id' => auth()->user()->id,
+            'book_id' => $request->book_id,
+            'page' => $validated['page'],
+        ]);
+
+        return redirect()->back();
     }
 
     /**
@@ -53,18 +57,13 @@ class BookmarkController extends Controller
      */
     public function show(Bookmark $bookmark)
     {
-        //
-    }
+        $book = $bookmark->load('book')->book;
+        // return view('books.read', [
+        //     'book' => $book,
+        //     'page' => $bookmark->page,
+        // ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Bookmark  $bookmark
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Bookmark $bookmark)
-    {
-        //
+        return redirect('/books/' . $book->slug . '/read')->with('bookmark', $bookmark->page);
     }
 
     /**
@@ -87,6 +86,8 @@ class BookmarkController extends Controller
      */
     public function destroy(Bookmark $bookmark)
     {
-        //
+        Bookmark::destroy($bookmark->id);
+
+        return redirect()->back()->with('success', 'Bookmark has been deleted');
     }
 }

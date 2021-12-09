@@ -23,9 +23,26 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books =  Book::latest()->filter(request(['sort', 'book_type']))->paginate(9)->withQueryString();
+        
+
+        if(request('sort') === 'desc') {
+            $books = Book::latest();
+        }
+        else {
+            $books = Book::oldest();
+        }
+        
+
+        if(request('search')) {
+            $books = $books->search(request('search'));
+        }
+
+        if(request('book_type')) {
+            $books = $books->type(request('book_type'));
+        }
+
         return view('books.index', [
-            'books' => $books
+            'books' => $books->paginate(9)->withQueryString(),
         ]);
     }
 
@@ -38,6 +55,13 @@ class BookController extends Controller
     public function show(Book $book)
     {
         return view('books.show', [
+            'book' => $book
+        ]);
+    }
+
+    public function read(Book $book)
+    {
+        return view('books.read', [
             'book' => $book
         ]);
     }
