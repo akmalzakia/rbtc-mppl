@@ -25,11 +25,11 @@ class BookController extends Controller
     {
         
 
-        if(request('sort') === 'desc') {
-            $books = Book::latest();
+        if(request('sort') === 'asc') {
+            $books = Book::oldest();
         }
         else {
-            $books = Book::oldest();
+            $books = Book::latest();
         }
         
 
