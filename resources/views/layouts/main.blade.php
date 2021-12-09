@@ -29,7 +29,6 @@
   <x-partial.footer />
 
   <script src="https://unpkg.com/feather-icons"></script>
-  <script src="{{ asset('js/pdf.js') }}"></script>
 
   <script>
     feather.replace();
