@@ -63,3 +63,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/contact',[InquiryController::class, 'create']);
     Route::get('/books/{book}/read', [BookController::class, 'read']);
 });
+
+Route::get('/symlink', function () {
+    Artisan::call('storage:link');
+});
