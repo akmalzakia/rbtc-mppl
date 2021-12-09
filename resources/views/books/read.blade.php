@@ -93,7 +93,19 @@
             queueRenderPage(pageNum);
         }
 
-        pdfjsLib.getDocument(url).promise.then(pdfDoc_ => {
+        const progressCallback = function (progress) {
+            let percentLoaded = progress.loaded / progress.total;
+            console.log(progress);
+        }
+
+        const loadingTask = pdfjsLib.getDocument(url);
+
+        loadingTask.onProgress = progress => {
+            let percentLoaded = progress.loaded / progress.total;
+            console.log(percentLoaded * 100 + "%");
+        }
+
+        loadingTask.promise.then(pdfDoc_ => {
             pdfDoc = pdfDoc_;
             document.querySelector('#page-count').textContent = pdfDoc.numPages;
             page.value = pageNum;
