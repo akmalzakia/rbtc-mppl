@@ -23,7 +23,7 @@
 
         <canvas id="pdf-render" class="w-3/4 mb-5"></canvas>
     </div>
-    <script src="https://mozilla.github.io/pdf.js/build/pdf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" integrity="sha512-q+4liFwdPC/bNdhUpZx6aXDx/h77yEQtn4I1slHydcbZK34nLaR3cAeYSJshoxIOq3mjEf7xJE8YWIUHMn+oCQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const url = "{{asset('uploads/' . $book->link) }}";
         console.log(url);
